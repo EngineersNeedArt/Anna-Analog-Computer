@@ -2,6 +2,18 @@
 
 Anna is an ecosystem of hobbyist-grade, analog computing modules.
 
+## Breadboard
+
+## Power
+
+The modules comprising ***Anna*** all run on (nominally 5V) USB power. All modules but **MAIN** assume that the top two power rails of the breadboard supply this USB power. The top rail (row) of the breadboard is assumed to be +5V and the rail (row) below is assumed to be ground (GND).
+
+While these power rails operate the electronics for each module, these rails are not to be used for the analog *programming*. There are instead three reference voltages used in the analog computing domain. These are:
+- **+UNIT**, nominally 4.00V. Representing the largest machine value (+1 if you like).
+- **ZERO**, nominally 2.50V. Representing the machine value zero (0).
+- **-UNIT**, nominally 1.00V. Representing the smallest machine value (-1 if you like).
+Needless to say, this makes the voltage window for representing values in ***Anna*** a very narrow 3 volts. Perhaps this is a good time to remind you that it is intended to be a *hobbyist* ananlog computer. 
+
 ## **MAIN**
 The **MAIN** module is required for any ***Anna*** configuration as it provides USB power to the top two rails of the breadboard. These USB power rails are what all other ***Anna*** modules depend upon to operate.
 - Provides USB power to the top two power rails on the breadboard—powering all other ***Anna*** modules.
