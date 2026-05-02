@@ -39,3 +39,13 @@ The **ADD** module had a pair of addition operators (or *summers*—I don't know
 Analog computers have to be careful to avoid a condition referred to as **overloading**. The addition operation makes a good case for the problem. Given the voltage limitation of ***Anna*** (1V, *machine -1* or **-UNIT** in ***Anna** parlance to 4V, *machine +1* or **+UNIT**) what do we expect if we try to add 4V and 4V (or "max plus max" if you will)? To get technical, the underlying op-amps that comprise the analog circuitry cannot exceed their own power rails—which we have mentioned are **5V USB** and **GND**.
 
 Instead, this condition is flagged as an error, called **overload**. The "programmer" must re-evaluate the program they have patched together—re-implement it to avoid overload. This might involve artificially scaling down part of an equation and then later "de-scaling" to counter.
+
+There is no on-board overload warning on the **ADD** module. Wiring the ouput of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads.
+
+Also, going too negative (below 1V in the case of ***Anna***) is oddly also called an *overload*.
+
+### Inversion
+
+You may notice that the add operators return the *inverted* sum of the inputs. That is, if you input the values for 0.2 and 0.4, the sum operator will return not 0.6 but -0.6. There is an underlying (op-amp related) reason for this. When the result of adding is needed to act as negative feedback in an equation you are modelling, this inversion is a happy accident. At times though when you need the non-inverted sum, you will have to wire the output of a summer to an inverter operator.
+
+Any add operator with a single input will return that input value inverted as output. But since inverting is a common operation, the **ADD** module contains a pair of dedicated inverter operators. (A dedicated inverter of course needs less pins and so conserves breadboard real-estate).
