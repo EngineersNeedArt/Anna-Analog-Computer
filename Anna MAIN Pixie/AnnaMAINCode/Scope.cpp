@@ -11,10 +11,11 @@
 #define SCOPEMETER_LT_RETICLE_COLOR 0x05E0  // Light Green
 #define SCOPEMETER_DK_RETICLE_COLOR 0x02E0  // Dark Green
 #define SCOPEMETER_MODELABEL_X      190
-#define SCOPEMETER_MODELABEL_Y      7
+#define SCOPEMETER_MODELABEL_Y1      7
+#define SCOPEMETER_MODELABEL_Y2      24
 
 const int SCOPE_FAST_FADE_INTERVAL_MS = 30;
-const int SCOPE_SLOW_FADE_INTERVAL_MS = 240;
+const int SCOPE_SLOW_FADE_INTERVAL_MS = 600;  // 240, 900
 const int SCOPE_GRADATION_COUNT = 5;
 
 
@@ -26,39 +27,86 @@ unsigned long lastScopeFade = 0;
 int fadeInterval = SCOPE_FAST_FADE_INTERVAL_MS;
 int32_t wasXPlot = 999;
 int32_t wasYPlot = 999;
-bool fadeSlow = true;
+int16_t scopeMode = 0;
+bool fadeSlow = false;
+bool firstQuadrant = true;
 
 // =================================================================== Functions
 // ------------------------------------------------------------------- runScope
 
+void _handleScopeModeChange (uint16_t displayWidth, uint16_t displayHeight) {
+  fadeSlow = !fadeSlow;
+  dotSize = fadeSlow ? 2 : 3;
+  fadeInterval = fadeSlow ? SCOPE_SLOW_FADE_INTERVAL_MS : SCOPE_FAST_FADE_INTERVAL_MS;
+  firstQuadrant = (scopeMode >= 2);
+
+  // Calculate origin, scale factor.
+  if (firstQuadrant) {
+    scale = (float) min (displayWidth - 1, displayHeight - 1);  // 135, 240
+    scale = (floor (scale / 10.0)) * 10.0;  // The largest integer multipe of 10 (10 gradations).
+    originX = floor ((displayWidth - scale) / 2.0);
+    originY = displayHeight - floor ((displayHeight - scale) / 2.0);
+  } else {
+    originX = displayWidth / 2;
+    originY = displayHeight / 2;
+    scale = (float) min (originX, originY);
+    scale = (floor (scale / 20.0)) * 20.0;  // Largest integer multipe of 20 (10 + and 10 - gradations).
+  }
+}
+
+// ------------------------------------------------------------------- runScope
+
 void runScope (struct MeterData *data) {
-  // Toggle fade mode if the top button is pressed.
+  // Cycle fade mode if the top button pressed.
   if (data->buttonToggle) {
-    fadeSlow = !fadeSlow;
-    dotSize = fadeSlow ? 2 : 3;
-    fadeInterval = fadeSlow ? SCOPE_SLOW_FADE_INTERVAL_MS : SCOPE_FAST_FADE_INTERVAL_MS;
+    bool wasQuadrant = firstQuadrant;
+    scopeMode = scopeMode + 1;
+    if (scopeMode >= 4) {
+      scopeMode = 0;
+    }
+    // Set up scaling variables.
+    _handleScopeModeChange (data->displayWidth, data->displayHeight);
+
+    // If we changed quadrant mode, clear screen, disregard was-values.
+    if (firstQuadrant != wasQuadrant) {
+      data->buffer->fillSprite (TFT_BLACK);
+      wasXPlot = 999;
+    }
   }
   
   // Draw grid. Every frame (unless you can think of a better, faster way).
-  for (int i = -SCOPE_GRADATION_COUNT; i <= SCOPE_GRADATION_COUNT; i++) {
-    bool majorAxis = (i == 0) || (i == SCOPE_GRADATION_COUNT) || (i == -SCOPE_GRADATION_COUNT);
-    uint32_t tickLength = scale;
-    uint32_t color = majorAxis ? SCOPEMETER_LT_RETICLE_COLOR : SCOPEMETER_DK_RETICLE_COLOR;
-    uint32_t offset = roundf ((i * scale) / float (SCOPE_GRADATION_COUNT));
-    uint32_t startX = majorAxis ? roundf (originX - scale) : originX - tickLength;
-    uint32_t startY = majorAxis ? roundf (originY - scale) : originY - tickLength;
-    uint32_t length = majorAxis ? roundf (scale * 2) : 2 * tickLength;
-    data->buffer->drawFastHLine (startX, originY + offset, length, color);
-    data->buffer->drawFastVLine (originX + offset, startY, length, color);
-
-    data->buffer->setTextFont (1);
-    data->buffer->setTextSize (2);
-    data->buffer->setTextDatum (TL_DATUM);
-    data->buffer->setTextColor (SCOPEMETER_DK_RETICLE_COLOR, TFT_BLACK);
+  if (firstQuadrant) {
+    for (int i = 0; i <= SCOPE_GRADATION_COUNT; i++) {
+      bool majorAxis = (i == 0);
+      uint32_t color = majorAxis ? SCOPEMETER_LT_RETICLE_COLOR : SCOPEMETER_DK_RETICLE_COLOR;
+      uint32_t offset = roundf ((i * scale) / float (SCOPE_GRADATION_COUNT));
+      uint32_t startX = originX;
+      uint32_t startY = originY - scale;
+      uint32_t length = scale;
+      data->buffer->drawFastHLine (startX, originY - offset, length, color);
+      data->buffer->drawFastVLine (originX + offset, startY, length, color);
+    }
+  } else {
+    for (int i = -SCOPE_GRADATION_COUNT; i <= SCOPE_GRADATION_COUNT; i++) {
+      bool majorAxis = (i == 0);
+      uint32_t tickLength = scale;
+      uint32_t color = majorAxis ? SCOPEMETER_LT_RETICLE_COLOR : SCOPEMETER_DK_RETICLE_COLOR;
+      uint32_t offset = roundf ((i * scale) / float (SCOPE_GRADATION_COUNT));
+      uint32_t startX = majorAxis ? roundf (originX - scale) : originX - tickLength;
+      uint32_t startY = majorAxis ? roundf (originY - scale) : originY - tickLength;
+      uint32_t length = majorAxis ? roundf (scale * 2) : 2 * tickLength;
+      data->buffer->drawFastHLine (startX, originY + offset, length, color);
+      data->buffer->drawFastVLine (originX + offset, startY, length, color);
+    }
   }
-
+  
   // Indicate mode.
-  data->buffer->drawString (fadeSlow ? "SLOW" : "FAST", SCOPEMETER_MODELABEL_X, SCOPEMETER_MODELABEL_Y);
+  data->buffer->setTextFont (1);
+  data->buffer->setTextSize (2);
+  data->buffer->setTextDatum (TL_DATUM);
+  data->buffer->setTextColor (SCOPEMETER_DK_RETICLE_COLOR, TFT_BLACK);
+  data->buffer->drawString (fadeSlow ? "SLOW" : "FAST", SCOPEMETER_MODELABEL_X, SCOPEMETER_MODELABEL_Y1);
+  data->buffer->drawString (firstQuadrant ? "QUAD" : "FULL", SCOPEMETER_MODELABEL_X, SCOPEMETER_MODELABEL_Y2);
   
   unsigned long now = millis ();
   if (now > lastScopeFade) {
@@ -98,8 +146,6 @@ void runScope (struct MeterData *data) {
   // Store away (x,y) point.
   wasXPlot = xPlot;
   wasYPlot = yPlot;
-  
-  data->buffer->pushSprite (0, 0);
 }
 
 // ------------------------------------------------------------------- prepareScope
@@ -108,14 +154,9 @@ float prepareScope (TFT_eSPI *tft) {
   // Sentinel value.
   wasXPlot = 999;
 
-  // Pre-calculate origin, scale factor.
-  originX = tft->width () / 2;
-  originY = tft->height () / 2;
-  scale = (float) min (originX, originY);
-  
-  // Get the largest integer multipe of 20 (10 positive and 10 negative gradations).
-  scale = (floor (scale / 20.0)) * 20.0;
-  
+  // Set up.
+  _handleScopeModeChange (tft->width (), tft->height ());
+
   return SCOPEMETER_ALPHA;
 }
 

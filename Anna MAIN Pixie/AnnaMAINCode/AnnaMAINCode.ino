@@ -59,6 +59,9 @@ uint32_t nextBlink = 0;
 bool blinkState = false;
 bool countingDown = true;
 unsigned long lastTime = 0;
+int overlayMode = -1;
+int overlayPosition = 0;
+unsigned long overlayTime = 0;
 
 // =================================================================== Functions
 // ------------------------------------------------------------------- adcTask
@@ -232,7 +235,76 @@ void handleMetering () {
       meterMode = 0;  // Wrap around to beginning metering mode.
     }
     assignMeterMode (meterMode);
+
+    overlayMode = 0;
+    overlayPosition = displayHeight;
   }
+}
+
+char *_meteringModeDisplayName () {
+  switch (meterMode) {
+    case VERTICAL_METERINGMODE:
+    return "Vertical Meters";
+    break;
+
+    case SWEEP_METERINGMODE:
+    return "Sweep Meters";
+    break;
+    
+    case STRIPCHART_METERINGMODE:
+    return "Strip Chart";
+    break;
+    
+    case SCOPE_METERINGMODE:
+    return "XY 'Scope";
+    break;
+
+    case MASSSPRING_METERINGMODE:
+    return "Spring + Mass";
+    break;
+    
+    case LUNARLANDER_METERINGMODE:
+    return "Lunar Lander";
+    break;
+
+    default:
+    return "Raw Values";
+    break;
+  }
+}
+
+void handleOverlay (void) {
+  if (overlayMode < 0) {
+    return;
+  }
+  
+  if (overlayMode == 0) {
+    overlayPosition = overlayPosition - 1;
+    if (overlayPosition <= displayHeight - 21) {
+      overlayMode = 1;
+      overlayTime = millis () + 1000;
+    }
+  } else if (overlayMode == 1) {
+      if (millis () > overlayTime) {
+        overlayMode = 2;
+      }
+  } else if (overlayMode == 2) {
+    overlayPosition = overlayPosition + 1;
+    if (overlayPosition > displayHeight) {
+      overlayMode = -1;
+      return;
+    }
+  }
+
+  spriteBuffer.drawFastHLine (0, overlayPosition - 1, displayWidth, TFT_BLACK);
+  spriteBuffer.fillRect (0, overlayPosition, displayWidth, 21, TFT_WHITE);
+  spriteBuffer.fillRect (0, overlayPosition, displayWidth, 21, TFT_WHITE);
+
+  spriteBuffer.setTextFont (1);
+  spriteBuffer.setTextSize (2);
+  spriteBuffer.setTextDatum (TC_DATUM);
+  spriteBuffer.setTextColor (TFT_BLACK, TFT_WHITE);
+  spriteBuffer.drawString (_meteringModeDisplayName (), displayWidth / 2, overlayPosition + 3);
 }
 
 // ------------------------------------------------------------------- testOverload
@@ -388,8 +460,11 @@ done:
 
   digitalWrite (OVERLOAD_OUT_PIN, overload ? HIGH : LOW);
   
+  // Rendering.
   // Display the data.
   handleMetering ();
+  handleOverlay ();
+  spriteBuffer.pushSprite (0, 0);
 
   // Test for the top button pressed.
   handleInputEnabling ();

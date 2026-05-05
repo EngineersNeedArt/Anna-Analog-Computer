@@ -146,8 +146,6 @@ void runLunarLander (struct MeterData *data) {
     // data->buffer->setTextColor (DARK_CRT, TFT_BLACK);
     data->buffer->drawString ("(Reset INT)", (data->displayWidth / 2.0) - 50, (data->displayHeight / 2.0) + 50);
   }
-
-  data->buffer->pushSprite (0, 0);
 }
 
 // ------------------------------------------------------------------- createLanderSprite

@@ -102,8 +102,6 @@ void runMassSpring (struct MeterData *data) {
   if (massYHistoryIndex >= MASSY_HISTORY_LENGTH) {
     massYHistoryIndex = 0;
   }
-
-  data->buffer->pushSprite (0, 0);
 }
 
 // ------------------------------------------------------------------- prepareMassSpring

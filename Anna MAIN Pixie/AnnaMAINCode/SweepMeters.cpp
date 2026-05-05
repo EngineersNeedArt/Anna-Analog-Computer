@@ -153,9 +153,8 @@ void runSweepMeters (struct MeterData *data) {
   }
   
 done:
-
-  // Blit to display.
-  data->buffer->pushSprite (0, 0);
+  
+  return;
 }
 
 // ------------------------------------------------------------------- createSweepMeterSprite

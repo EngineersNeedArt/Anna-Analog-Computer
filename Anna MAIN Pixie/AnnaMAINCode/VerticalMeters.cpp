@@ -115,7 +115,6 @@ void runVerticalMeters (struct MeterData *data) {
 done:
 
   data->buffer->drawRect (0, data->displayHeight / 2, data->displayWidth, 2, TFT_RED);
-  data->buffer->pushSprite (0, 0);
 }
 
 // ------------------------------------------------------------------- createVMeterSprite

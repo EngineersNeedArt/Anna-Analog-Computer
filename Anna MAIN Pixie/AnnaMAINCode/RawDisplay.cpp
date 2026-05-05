@@ -104,8 +104,6 @@ void runRawDisplay (struct MeterData *meterData, struct RawData *rawData) {
   dtostrf (rawData->rawUnitNegOne, 0, 0, stringBuffer);
   meterData->buffer->drawString (stringBuffer, RAW_DISPLAY_RIGHT_COLUMN2, yCursor);
   yCursor += RAW_DISPLAY_ROW_HEIGHT;
-
-  meterData->buffer->pushSprite (0, 0);
 }
 
 // ------------------------------------------------------------------- prepareRawDisplay

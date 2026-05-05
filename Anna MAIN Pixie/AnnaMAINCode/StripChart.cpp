@@ -166,7 +166,6 @@ void runStripChart (struct MeterData *data) {
       stripLabel5Sprite->pushToSprite (data->buffer, STRIPMETER_LABEL_X_OFFSET, yPos + STRIPMETER_LABEL_Y_OFFSET, TFT_TRANSPARENT);
     }
   }
-  data->buffer->pushSprite (0, 0);
   
   startingStrip = false;
 }
