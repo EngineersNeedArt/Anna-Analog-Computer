@@ -28,7 +28,7 @@ More (esoteric) details are available in the **README** that with the **MAIN** s
 
 ## **ADD**
 
-The **ADD** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most: **USB 5V**, and the next row: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
+The **ADD** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
 
 As with most of the other modules described as well, it also requires a **ZERO** reference supplied to it from **MAIN**. Most of the modules use op-amps employing a *virtual ground* that is above **USB GND**. As indicated earlier, rather than the analog voltages swinging positive and negative to indicate positive and negative values, zero for ***Anna*** is 2.50V and positive and negative values run from 4.00V down to 1.00V. So that everyone is on the same page, the modules that require a virtual ground must have that connected to them from the **MAIN** module (a pin labeled **ZERO**).
 
