@@ -26,13 +26,27 @@ The **MAIN** module is required for any ***Anna*** configuration as it provides 
 
 More (esoteric) details are available in the **README** that with the **MAIN** subfolder in this repository.
 
+## **POTS**
+
+The **POTS** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
+
+The **POTS** has four potentiometers—three of those are wired internally to behave as “coefficient multipliers” (in analog computer parlance). What this means, electrically, is that the low-side of the potentiometer is tied to a *machine zero* reference supplies by **MAIN**, while the user is expected to connect their input signal to the pin tied to the potʼs high-side. With the potʼs wiper conencted to the output pin, the pot acts as a voltage divider—effectivly attenuating the incoming voltage.
+
+A practical use case for a coefficent multiplier is to attenuate a signal that is being used as feedback.
+
+The 4th potentiometer on the **POTS** module is not tied to a zero-reference—the high-side of the pot is another input pin. The input pins are labeled **CCW** and **CW** referring to the rotation of the pot they correspond to. Connecting **CCW** to a **ZERO** reference makes this 4th pot behave like the other three—like a coefficient multiplier.
+
+Like all of the modules (except for **MAIN**), **POTS** requires a **ZERO** voltage reference for the three coefficient multipliers to work correctly. The modules use op-amps employing a *virtual ground*. As indicated earlier, rather than the analog *voltages* swinging positive and negative to indicate positive and negative *values*, “zero” for ***Anna*** is 2.50V— positive values are from 2.50V to 4.00V, negative values from 2.50V down to 1.00V. So that all the modules are on the same page, they require the virtual ground connected to them from the **MAIN** module (a pin labeled **ZERO**).
+
+(Strictly speaking, if you are using only the fourth potentiometer, you can leave off the **ZERO** reference input.)
+
+All four pots buffer their output (using op-amps as voltage followers).
+
 ## **ADD**
 
-The **ADD** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
+The **ADD** module also requires **USB** power and also a **ZERO** reference voltage.
 
-As with most of the other modules described as well, it also requires a **ZERO** reference supplied to it from **MAIN**. Most of the modules use op-amps employing a *virtual ground* that is above **USB GND**. As indicated earlier, rather than the analog voltages swinging positive and negative to indicate positive and negative values, zero for ***Anna*** is 2.50V and positive and negative values run from 4.00V down to 1.00V. So that everyone is on the same page, the modules that require a virtual ground must have that connected to them from the **MAIN** module (a pin labeled **ZERO**).
-
-The **ADD** module had a pair of addition operators. (Or *summers*? I don't know: a 〝summer〞 is a season and an 〝adder〞 is a snake—they're both poor words). These operators take 2 or more inputs (values, voltages) and output the negative sum of those inputs.
+The **ADD** module has a pair of addition operators. (Or *summers*? I don't know: a 〝summer〞 is a season and an 〝adder〞 is a snake—they're both poor words). These operators take 2 or more inputs (values, voltages) and output the negative sum of those inputs.
 
 ### Overload 
 
@@ -49,3 +63,7 @@ Also, going too negative (below 1V in the case of ***Anna***) is oddly also call
 You may notice that the add operators return the *inverted* sum of the inputs. That is, if you input the values for 0.2 and 0.4, the sum operator will return not 0.6 but -0.6. There is an underlying (op-amp related) reason for this. When the result of adding is needed to act as negative feedback in an equation you are modelling, this inversion is a happy accident. At times though when you need the non-inverted sum, you will have to wire the output of a summer to an inverter operator.
 
 Any add operator with a single input will return that input value inverted as output. But since inverting is a common operation, the **ADD** module contains a pair of dedicated inverter operators. (A dedicated inverter of course needs less pins and so conserves breadboard real-estate).
+
+## **MULT**
+
+## **INT**
