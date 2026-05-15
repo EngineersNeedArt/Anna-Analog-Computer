@@ -46,7 +46,7 @@ All four pots buffer their output (using op-amps as voltage followers).
 
 The **ADD** module also requires **USB** power and also a **ZERO** reference voltage.
 
-The **ADD** module has a pair of addition operators. (Or *summers*? I don't know: a 〝summer〞 is a season and an 〝adder〞 is a snake—they're both poor words). These operators take 2 or more inputs (values, voltages) and output the negative sum of those inputs.
+The **ADD** module has a pair of addition operators. (Or *summers*? I don't know: a “summer” is a season and an “adder” is a snake—they're both poor words). These operators take 2 or more inputs (values, voltages) and output the negative sum of those inputs.
 
 ### Overload 
 
