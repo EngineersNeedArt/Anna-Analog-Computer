@@ -1,4 +1,4 @@
-# *〝Anna〞* (a modular, hobbyist-grade analog computer)
+# *〝Anna〞* (a breadboard-based, modular, hobbyist analog computer)
 
 Anna is an ecosystem of hobbyist-grade, analog computing modules.
 
