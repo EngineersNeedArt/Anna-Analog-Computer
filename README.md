@@ -40,7 +40,7 @@ Analog computers have to be careful to avoid a condition referred to as **overlo
 
 Instead, this condition is flagged as an error, called **overload**. The "programmer" must re-evaluate the program they have patched together—re-implement it to avoid overload. This might involve artificially scaling down part of an equation and then later "de-scaling" to counter.
 
-There is no on-board overload warning on the **ADD** module. Wiring the ouput of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads.
+There is no on-board overload warning on the **ADD** module. Wiring the ouput of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads (**MAIN** detects over/undervolts at all its inputs).
 
 Also, going too negative (below 1V in the case of ***Anna***) is oddly also called an *overload*.
 
