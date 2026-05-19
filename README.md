@@ -1,6 +1,6 @@
 # *〝Anna〞* (a breadboard-based, modular, hobbyist analog computer)
 
-Anna is an ecosystem of hobbyist-grade, analog computing modules.
+Anna is an ecosystem of analog computing modules.
 
 ## Breadboard
 
