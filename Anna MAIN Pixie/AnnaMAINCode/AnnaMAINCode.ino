@@ -126,6 +126,26 @@ float computeMachineFromRaw (float raw) {
   return m;
 }
 
+// Clear Output of Serial Monitor (Arduino IDE) before calling.
+// When data is finished being sent, copy text from Serial Monitor and paste into plaintext 
+// document (.ppm extension).
+// Using magick (command-line tool): convert in_screenshot.ppm out_screenshot.png
+
+void debug_dumpScreenAsPPM (TFT_eSprite &spr, int w, int h) {
+    Serial.printf ("P3\n%d %d\n255\n", w, h);
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            uint16_t c = spr.readPixel(x, y);  // RGB565
+            uint8_t r = ((c >> 11) & 0x1F) << 3;
+            uint8_t g = ((c >> 5)  & 0x3F) << 2;
+            uint8_t b = ( c        & 0x1F) << 3;
+            Serial.printf("%d %d %d ", r, g, b);
+        }
+        Serial.print('\n');
+        delay(2);  // give Serial buffer time to drain
+    }
+}
+
 // ------------------------------------------------------------------- assignMeterMode
 
 void assignMeterMode (int newMode) {
@@ -234,6 +254,10 @@ void handleMetering () {
     if (meterMode >= METERINGMODE_COUNT) {
       meterMode = 0;  // Wrap around to beginning metering mode.
     }
+
+    // Enable for grabbing screenshots.
+    debug_dumpScreenAsPPM (spriteBuffer, displayWidth, displayHeight);
+    
     assignMeterMode (meterMode);
 
     overlayMode = 0;
@@ -256,7 +280,7 @@ char *_meteringModeDisplayName () {
     break;
     
     case SCOPE_METERINGMODE:
-    return "XY 'Scope";
+    return "XY Scope";
     break;
 
     case MASSSPRING_METERINGMODE:
