@@ -256,10 +256,10 @@ void handleMetering () {
     }
 
     // Enable for grabbing screenshots.
-    debug_dumpScreenAsPPM (spriteBuffer, displayWidth, displayHeight);
+    // debug_dumpScreenAsPPM (spriteBuffer, displayWidth, displayHeight);
     
     assignMeterMode (meterMode);
-
+    
     overlayMode = 0;
     overlayPosition = displayHeight;
   }
