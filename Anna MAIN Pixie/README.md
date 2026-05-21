@@ -28,17 +28,31 @@ The Strip Chart is a moving metering mode that can display all 5 source inputs w
 <img src="images/Anna (MAIN, Lotka-Volterra XY Scope).png" alt="XY Scope screenshot" width="240">
 </div>
 
+The XY Scope is patterned after an oscilloscope. It makes use of **SRC1** to control the X-position of a dot and **SRC2** to control the Y-position. The *options button* toggles between displaying the whole *machine value* range to displaying just Quadrant I (the positive *machine values*). The *options button* also toggles between two *fade speeds* for the phosphor trace: slow and fast.
+
 ### Spring + Mass
 
 <div align="center">
 <img src="images/Anna (MAIN, Spring + Mass).png" alt="Spring + Mass screenshot" width="240">
 </div>
 
+Spring + Mass is a special demonstration metering mode. It represents a mass on a spring. The vertical position of the mass is controlled solely by the voltage at **SRC1**. The *options button* does nothing. 
+
 ### Lunar Lander
 
 <div align="center">
 <img src="images/Anna (MAIN, Lunar Lander).png" alt="Lunar Lander screenshot" width="240">
 </div>
+
+Lunar Lander is another special metering mode that is a game. It expects a gravitational constant to be presented at **SRC1**, the intermittent thrust to be connected to **SRC2**, the spacecraft velocity to be connected to **SRC3** and the spacecraft elevation/altitude to be connected to **SRC4**. An optional *fuel level* voltage can be connected to **SRC5**.
+
+The above connections presume that the user has wired up the lunar lander program on the analog computer—supplied the above voltages as described.
+
+Starting the game is done by simply resetting the integrators that dictate velocity (reset to **ZERO**), altitude (reset to **+UNIT**) and, if the fuel level integrator is wired up, resetting the fuel level to **+UNIT**. Doing so put the spacecraft at the top fo the display, with no vertical velocity, and optionally with a full tank of fuel.
+
+As the spacecraft descends, the software monitors the spacecraft altitude (**SRC4**) to determine touch-down. When the spacecraft altitude passes the touch-down threshhold, velocity (**SRC3**) is evaluated by the software to determine if the landing was safe. The **MAIN** display will indicate a safe landing or a crash.
+
+If the optional fuel level (**SRC5**) ever drops to an empty tank, the game will indicate a crash landing.
 
 ### Raw Values
 
