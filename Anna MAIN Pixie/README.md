@@ -20,6 +20,8 @@ The default metering mode consists of five moveable, vertical meters and a fixed
 <img src="images/Anna (MAIN, Lotka-Volterra Strip Chart).png" alt="Strip Chart screenshot" width="240">
 </div>
 
+The Strip Chart is a moving metering mode that can display all 5 source inputs with roughly 4 seconds of history visible. The vertical rules that scroll by mark off 1 second intervals. The *options button*  allows you to toggle the number of inputs displayed. *Overload* is represented by the lables flashing.
+
 ### XY Scope
 
 <div align="center">
