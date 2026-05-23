@@ -36,7 +36,9 @@ The XY Scope is patterned after an oscilloscope. It makes use of **SRC1** to con
 <img src="images/Anna (MAIN, Spring + Mass).png" alt="Spring + Mass screenshot" width="240">
 </div>
 
-Spring + Mass is a special demonstration metering mode. It represents a mass on a spring. The vertical position of the mass is controlled solely by the voltage at **SRC1**. The *options button* does nothing. 
+Spring + Mass is a special demonstration metering mode. It represents a mass on a spring. The vertical position of the mass is controlled solely by the voltage at **SRC1**. The *options button* does nothing.
+
+The mass leaves a “trail” sort of like the Strip Chart. A color change indicates 1-second intervals.
 
 ### Lunar Lander
 
