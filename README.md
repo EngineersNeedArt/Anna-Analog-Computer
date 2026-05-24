@@ -70,6 +70,18 @@ The **MULT** module has a pair of multipliers. It performs multiplication using 
 
 The multiplier and multiplicand are assumed to be within *machine range* and are treated as values between 1.0 and -1.0. As such, the product will also always be within *machine range* (between 1.0 and -1.0). Consequently, the operator should not overload. (If the product ever overloads it is from an input that was already overloaded.)
 
-A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.)
+A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.) After calibrating a **MULT** module, I measured it with 49 sample voltages (combinations of 7 voltages for **X** and 7 for **Y**) and measured the product. Plotting the results vs. the expected result I submitted the data to an LLM and was told the overall accuracy to be about 2.3% RMS full scale (I am lazy beyond some threshold). In general, expect some error from the **MULT** module.
 
 ## **INT**
+
+The **INT** module may be the most important one. I have read that integration was in fact the reason for early analog computing at all.
+
+**INT** combines a pair of integrators in a single module. A single **Reset** button, when held for a short period, sets both integrators to their initial conditions (initial voltages). The “IC” of each integrator is established from the user having connected a voltage to its **IC** pin.
+
+Integrators output a voltage—initially they are expected to be Reset and so ouput their IC voltage. Inputs to each integrator though can cause the output voltage of the integrator to rise or fall—the applied voltage or value is being integrated with respect to time.
+
+Like the **ADD** module, the integrators on the **INT** module are also inverting. In practice this means that if you supply a **positive** *machine value* to an integrator, the value it ouyputs will get **smaller**, not larger. The reverse is the case when a **negative** machine value is applied.
+
+If *machine zero* (**ZERO**) is applied as in input, the output of an integrator does not change.
+
+Integrators integrate with respect to time and there is a switch on **INT** that can toggle between a *slow* integration time constant and a *fast* one. In practice, most simulations (programs), might prefer the faster integration—such as a program that models the bounce of a mass on a spring. Another program, like a game simulating a spacecraft landing on the Moon, might want to be slowed down in order to be more easy to play.
