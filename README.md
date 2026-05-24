@@ -66,4 +66,10 @@ Any add operator with a single input will return that input value inverted as ou
 
 ## **MULT**
 
+The **MULT** module has a pair of multipliers. It performs multiplication using a PWM circuit (described in more detail in the **MULT** ReadMe.md). It requires **USB** power and a **ZERO** reference voltage.
+
+The multiplier and multiplicand are assumed to be within *machine range* and are treated as values between 1.0 and -1.0. As such, the product will also always be within *machine range* (between 1.0 and -1.0). Consequently, the operator should not overload. (If the product ever overloads it is from an input that was already overloaded.)
+
+A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.)
+
 ## **INT**
