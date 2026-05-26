@@ -1,12 +1,12 @@
-# *〝Anna〞* (a breadboard-based, modular, hobbyist analog computer)
+# “Anna” Analog Computer
 
-Anna is an ecosystem of analog computing modules.
+***Anna*** is an ecosystem of analog computing modules. The modules make use of a hobbyist breadboard and USB power and combine to make something like an analog computer trainer.
 
-## Breadboard
+### Breadboard
 
-An electronic’s breadboard is an integral part of ***Anna***. Photos of ***Anna*** on a breadboard should not be thought to be of ***Anna*** as a prototype. This *is* ***Anna***. The breadboard allows ***Anna*** to be easily modular, expandable. It provides a power bus (the top two power rails of the breadboard) and it is acts as the “patch bay” that allows you to connect inputs and outputs between the various analog operators.
+An electronics breadboard is an integral part of ***Anna***. Photos of ***Anna*** on a breadboard should not be thought to be of ***Anna*** as a prototype. This *is* ***Anna***. The breadboard allows ***Anna*** to be easily modular, expandable. It provides a power bus (the top two power rails of the breadboard) and it is acts as the “patch bay” that allows you to connect inputs and outputs between the various analog operators.
 
-## Power
+### Power
 
 The modules comprising ***Anna*** all run on (nominally 5V) USB power. All modules but **MAIN** assume that the top two power rails of the breadboard supply this USB power. The top rail (row) of the breadboard is assumed to be +5V and the rail (row) below is assumed to be ground (GND).
 
@@ -16,7 +16,9 @@ While these power rails operate the electronics for each module, these rails are
 - **-UNIT**, nominally 1.00V. Representing the smallest machine value (-1 if you like).
 Needless to say, this makes the voltage window for representing values in ***Anna*** a very narrow 3 volts. Perhaps this is a good time to remind you that it is intended to be a *hobbyist* analog computer. 
 
-## **MAIN**
+## **The Modules**
+
+### MAIN Module
 The **MAIN** module is required for any ***Anna*** configuration as it provides USB power to the top two rails of the breadboard. These USB power rails are what all other ***Anna*** modules depend upon to operate.
 - Provides USB power to the top two power rails on the breadboard—powering all other ***Anna*** modules.
 - Provides the reference voltages for **+UNIT**, **ZERO** and **-UNIT**. These are the operating voltages of the analog computer programs.
@@ -26,7 +28,7 @@ The **MAIN** module is required for any ***Anna*** configuration as it provides 
 
 More (esoteric) details are available in the **README** that with the **MAIN** subfolder in this repository.
 
-## **POTS**
+### POTS Module
 
 The **POTS** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
 
@@ -42,13 +44,13 @@ Like all of the modules (except for **MAIN**), **POTS** requires a **ZERO** volt
 
 All four pots buffer their output (using op-amps as voltage followers).
 
-## **ADD**
+### ADD Module
 
 The **ADD** module also requires **USB** power and also a **ZERO** reference voltage.
 
 The **ADD** module has a pair of addition operators. (Or *summers*? I don't know: a “summer” is a season and an “adder” is a snake—they're both poor words). These operators take 2 or more inputs (values/voltages) and output the negative sum of those inputs.
 
-### Overload 
+#### Overload 
 
 Analog computers have to be careful to avoid a condition referred to as **overloading**. The addition operation makes a good case for the problem. Given the voltage limitation of ***Anna*** (1V, *machine -1* or **-UNIT** in ***Anna** parlance to 4V, *machine +1* or **+UNIT**) what do we expect if we try to add 4V and 4V (or "max plus max" if you will)? To get technical, the underlying op-amps that comprise the analog circuitry cannot exceed their own power rails—which we have mentioned are **5V USB** and **GND**.
 
@@ -58,13 +60,13 @@ There is no on-board overload warning on the **ADD** module. Wiring the ouput of
 
 Also, going too negative (below 1V in the case of ***Anna***) is oddly also called an *overload*.
 
-### Inversion
+#### Inversion
 
 You may notice that the add operators return the *inverted* sum of the inputs. That is, if you input the values for 0.2 and 0.4, the sum operator will return not 0.6 but -0.6. There is an underlying (op-amp related) reason for this. When the result of adding is needed to act as negative feedback in an equation you are modelling, this inversion is a happy accident. At times though when you need the non-inverted sum, you will have to wire the output of a summer to an inverter operator.
 
 Any add operator with a single input will return that input value inverted as output. But since inverting is a common operation, the **ADD** module contains a pair of dedicated inverter operators. (A dedicated inverter of course needs less pins and so conserves breadboard real-estate).
 
-## **MULT**
+### MULT Module
 
 The **MULT** module has a pair of multipliers. It performs multiplication using a PWM circuit (described in more detail in the **MULT** ReadMe.md). It requires **USB** power and a **ZERO** reference voltage.
 
@@ -72,7 +74,7 @@ The multiplier and multiplicand are assumed to be within *machine range* and are
 
 A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.) After calibrating a **MULT** module, I measured it with 49 sample voltages (combinations of 7 voltages for **X** and 7 for **Y**) and measured the product. Plotting the results vs. the expected result I submitted the data to an LLM and was told the overall accuracy to be about 2.3% RMS full scale (I am lazy beyond some threshold). In general, expect some error from the **MULT** module.
 
-## **INT**
+### INT Module
 
 The **INT** module may be the most important one. I have read that integration was in fact the reason for early analog computing at all.
 
