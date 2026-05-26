@@ -4,7 +4,7 @@
 
 ### Breadboard
 
-An electronics breadboard is an integral part of ***Anna***. Photos of ***Anna*** on a breadboard should not be thought to be of ***Anna*** as a prototype. This *is* ***Anna***. The breadboard allows ***Anna*** to be easily modular, expandable. It provides a power bus (the top two power rails of the breadboard) and it is acts as the “patch bay” that allows you to connect inputs and outputs between the various analog operators.
+An electronics breadboard is an integral part of ***Anna***. The breadboard allows ***Anna*** to be easily modular, expandable. It provides a power bus (the top two power rails of the breadboard) and it is acts as the “patch bay” that allows you to connect inputs and outputs between the various analog operators.
 
 ### Power
 
