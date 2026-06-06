@@ -87,3 +87,31 @@ Like the **ADD** module, the integrators on the **INT** module are also invertin
 If *machine zero* (**ZERO**) is applied as in input, the output of an integrator does not change.
 
 Integrators integrate with respect to time and there is a switch on **INT** that can toggle between a *slow* integration time constant and a *fast* one. In practice, most simulations (programs), might prefer the faster integration—such as a program that models the bounce of a mass on a spring. Another program, like a game simulating a spacecraft landing on the Moon, might want to be slowed down in order to be more easy to play.
+
+## **Future Modules**
+
+There are some “missing modules” that will perhaps show up over time.
+
+### Log and Anti-log Modules
+
+Searching through older analog computer sources, you can find circuits that take a voltage as input and then output the natural **log** of that voltage. A diode (or more typically, a transistor) is employed in the *feedback loop* of an op-amp to achieve this.
+
+Further, a diode (transistor) employed in *series* with the input to an op-amp will give you the **anti-log** from an input voltage.
+
+*(It might be noted that the accuracy of both circuits is (apparently) encumbered by their sensitivity to temperature.)*
+
+If a value is first passed to the **log** circuit, the result can be divided by two with a **coefficient multiplier**—the **anti-log** of this then gives you the square root of the original value.
+
+Or, the **log** of two values can be added with an **adder** and the **anti-log** of the sum is the equivalent of the product of the original values. (Another method of multiplication.)
+
+### Comparator Module
+
+For some simulations a kind of *binary switch* might be desirable. For example, a bouncing ball simulation needs to know when the ball has fallen to some position where it has encountered the floor and should reverse its velocity (it should bounce). A **comparator** module would make use of an op-amp to detect when the input has crossed some threshhold and then switch its output.
+
+### Sweep Module
+
+Some simulations might benefit by having an input that sweeps a range of values. A circuit that outputs a triangle wave would achive this. Having a means to change the speed (period) of the sweep would be important.
+
+### Trigonometry Module
+
+Sine and cosine are uiseful operations to include. There are no simple electrical circuits that naturally give rise to these trigonometric functions. There is a method using diodes and resistors to *shape* a function from a given input. Enough diode stages in a kind of ladder configuration with precise resistor values can output a voltage that approximate, for example, the sine of the input voltage.
