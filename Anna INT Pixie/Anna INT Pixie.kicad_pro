@@ -224,7 +224,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "1.1"
+      "sch_revision": "1.0"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -473,7 +473,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Anna ADD Pixie.kicad_pro",
+    "filename": "Anna INT Pixie.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -519,11 +519,7 @@
       },
       {
         "netclass": "Power",
-        "pattern": "Net-(J2-Pin_2)"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "Net-(J1-Pin_1)"
+        "pattern": "+5V"
       }
     ]
   },
@@ -686,18 +682,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "Anna ADD Pixie.kicad_sch",
-        "name": "Anna ADD Pixie",
+        "filename": "Anna INT Pixie.kicad_sch",
+        "name": "Anna INT Pixie",
         "uuid": "38a7dcf2-9a13-4252-9430-d254ba71d7ae"
       }
     ],
-    "used_designators": "",
+    "used_designators": "JP1-2,C4-5,SW1-4",
     "variants": []
   },
   "sheets": [
     [
       "38a7dcf2-9a13-4252-9430-d254ba71d7ae",
-      "Anna ADD Pixie"
+      "Anna INT Pixie"
     ]
   ],
   "text_variables": {},

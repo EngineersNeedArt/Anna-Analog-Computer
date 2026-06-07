@@ -289,10 +289,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole rect
+		(pad "1" thru_hole circle
 			(at 0 0)
-			(size 1.7 1.7)
-			(drill 1)
+			(size 2.5 2.5)
+			(drill 1.5)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "Net-(J5-Pin_1)")
@@ -302,6 +302,7 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.step"
+			(hide yes)
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19580,10 +19581,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole rect
+		(pad "1" thru_hole circle
 			(at 0 0)
-			(size 1.7 1.7)
-			(drill 1)
+			(size 2.5 2.5)
+			(drill 1.5)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "Net-(J4-Pin_1)")
@@ -19593,6 +19594,7 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.step"
+			(hide yes)
 			(offset
 				(xyz 0 0 0)
 			)
@@ -24466,7 +24468,7 @@
 			)
 		)
 	)
-	(gr_text "{dblquote}Anna{dblquote} ADD Pixie 1.0\nJohn Calhoun 2026"
+	(gr_text "{dblquote}Anna{dblquote} ADD Pixie 1.1\nJohn Calhoun 2026"
 		(at 154.3558 93.9292 0)
 		(layer "B.SilkS")
 		(uuid "b54b6300-af2f-4e3a-bff0-489e470e9f5b")
