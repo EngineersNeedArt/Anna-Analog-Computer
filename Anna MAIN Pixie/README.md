@@ -14,7 +14,7 @@ The bottom-right button, the one closest to the user, Iʼll call the *mode butto
 <img src="images/Anna (MAIN, Vertical Meters).png" alt="Vertical Meters screenshot" width="240">
 </div>
 
-The default metering mode consists of five moveable, vertical meters and a fixed red index line. They are labeled 1 though 5 and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1.
+The default metering mode consists of five moveable, vertical meters and a fixed red index line. They are labeled 1 though 5 and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
 
 ### Sweep Meters
 
@@ -22,7 +22,7 @@ The default metering mode consists of five moveable, vertical meters and a fixed
 <img src="images/Anna (MAIN, Sweep Meters).png" alt="Sweep Meters screenshot" width="240">
 </div>
 
-Looking like traditional analog panel meters, the magic of digital emulation means that 5 needles can share the same meter. They are labeled 1 though 5, color coded, and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1.
+Looking like traditional analog panel meters, the magic of digital emulation means that 5 needles can share the same meter. They are labeled 1 though 5, color coded, and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
 
 ***(NOTE: in the screenshot only 3 inputs are enabled.)***
 
@@ -32,7 +32,7 @@ Looking like traditional analog panel meters, the magic of digital emulation mea
 <img src="images/Anna (MAIN, Lotka-Volterra Strip Chart).png" alt="Strip Chart screenshot" width="240">
 </div>
 
-The Strip Chart is a moving metering mode that can display all 5 source inputs with roughly 4 seconds of history visible. The vertical rules that scroll by mark off 1 second intervals. The *options button*  allows you to toggle the number of inputs displayed. *Overload* is represented by the lables flashing.
+The Strip Chart is a moving metering mode that can display all 5 source inputs with roughly 4 seconds of history visible. The vertical rules that scroll by mark off 1 second intervals. The *options button*  allows you to toggle the number of inputs displayed. *Overload* is represented by the labels flashing.
 
 ***(NOTE: in the screenshot only 2 inputs are enabled.)***
 
