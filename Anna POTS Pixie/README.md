@@ -1,6 +1,6 @@
 # POTS Module
 
-Four op-amps buffer the outputs from the four potentiometers of the **POTS** Module. In this way, circuits connected to the output to not load the potentiometer and drag down itʼs voltage.
+Four op-amps buffer the outputs from the four potentiometers of the **POTS** module. In this way, circuits connected to the output to not load the potentiometer and drag down itʼs voltage.
 
 <div align="center">
   <img src="images/POTS Schematic.png" alt="POTS Schematic" width="765">
