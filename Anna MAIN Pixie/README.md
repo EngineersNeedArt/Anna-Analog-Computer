@@ -1,4 +1,4 @@
-# MAIN
+# MAIN Module
 
 ## Software
 
