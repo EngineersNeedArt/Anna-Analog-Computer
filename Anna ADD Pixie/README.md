@@ -9,7 +9,7 @@ Also like the most of the other **“Anna”** modules, the **ADD** module requi
 Currently there is no **overload** detection on the **ADD** module itself. If the result of operating on an input voltage results in a voltage outside of the range of **“Anna's”** defined machine range of 1.0V and 4.0V, it is simply presented as is. The **MAIN** module has overload detection on all five of its source voltage inputs and is typically where you will detect an overload.
 
 <div align="center">
-  <img src="../images/ADD Schematic.png" alt="ADD Schematic" width="795">
+  <img src="images/ADD Schematic.png" alt="ADD Schematic" width="795">
 </div>
 
 ## Summing Junction
