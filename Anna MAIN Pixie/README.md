@@ -66,7 +66,7 @@ The above connections presume that the user has wired up the lunar lander progra
 
 Starting the game is done by simply resetting the integrators that dictate velocity (reset to **ZERO**), altitude (reset to **+UNIT**) and, if the fuel level integrator is wired up, resetting the fuel level to **+UNIT**. Doing so put the spacecraft at the top fo the display, with no vertical velocity, and optionally with a full tank of fuel.
 
-As the spacecraft descends, the software monitors the spacecraft altitude (**SRC4**) to determine touch-down. When the spacecraft altitude passes the touch-down threshhold, velocity (**SRC3**) is evaluated by the software to determine if the landing was safe. The **MAIN** display will indicate a safe landing or a crash.
+As the spacecraft descends, the software monitors the spacecraft altitude (**SRC4**) to determine touch-down. When the spacecraft altitude passes the touch-down threshold, velocity (**SRC3**) is evaluated by the software to determine if the landing was safe. The **MAIN** display will indicate a safe landing or a crash.
 
 If the optional fuel level (**SRC5**) ever drops to an empty tank, the game will indicate a crash landing.
 
@@ -81,3 +81,33 @@ Initially kind of a debug mode, it displays the raw values of the inputs coming 
 When a source input is indicated as Overloading, it is because it is outside the range of the measured **+UNIT** and **-UNIT**. It is indicated in this mode when the inputʼs label is rendered white. **+UNIT**, **ZERO** and **-UNIT**, by definition, can never be “overloading”.
 
 When a source input is displayed on the LCD, as a reading on a meter for example, it is arrived at by finding where the source input value is proportionally between the reference values (voltages). If, for example, the value is greater than **ZERO**, itʼs relative value is determined by scaling it proportionally between the measured **ZERO** and **+UNIT**.
+
+## Hardware
+
+<div align="center">
+<img src="images/MAIN Schematic.png" alt="MAIN Schematic" width="1480">
+</div>
+
+The ESP32 dev board (LILYGO T-Display) dominates the schematic with the large yellow box in the upper right. It has the USB-C connection from which the entire **“Anna”** ecosystem derives USB power. A pair of capacitors serve to smooth the current on those power rails.
+
+### Buffering
+
+Across the bottom are eight op-amps involved in buffering (wired as voltage followers). Three are used to buffer the outputs of the machine values/voltages (1.0V, 2.5V and 4.0V)—in this way the voltages are protected from being loaded down by the analog circuitry.
+
+The other five op-amps are used to buffer the five source-voltage inputs to **MAIN**. 
+
+### ADC
+
+Just above the op-amps are a pair of ADC chips (analog-to-digital). Each chip has four channels for a total of eight inputs. Three of these are dedicated to converting the machine values/voltages (1.0V, 2.5V and 4.0V) to digital form. The other five are, unsurprisingly, used to convert the source-voltage inputs to digital form.
+
+The ESP32 reads the 8 digital values over I2C.
+
+*Note: the ESP32 works on 3.3V and can be damaged by the 5V that **“Anna”** uses. The ADC chips are running from 5V and can therefore directly interface **“Anna's”** 5V inputs. To interface between the ADC chips and the ESP32, a dedicated chip handles level-shifting the I2C connection.*
+
+When, for example, the ESP32 is to display a source-voltage input as a needle on a meter, it can use the three digital machine values to find a proportional position to move the needle to.
+
+Further, if any digital source-voltage input exceeds the digital positive machine unit value or is less than the digital negative machine unit value, it is flagged as **overloading**.
+
+### Voltage Sources
+
+A last point to call out is the small component on the far-left (U5). It takes the voltage from USB and provides the stable 4.0V that **“Anna”** uses for positive machine value. The other machine values (zero and negative unit), are pared from the 4.0V using carefully selected resistor values arranged as voltage dividers.
