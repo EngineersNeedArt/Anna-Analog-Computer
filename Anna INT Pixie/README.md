@@ -18,7 +18,7 @@ Each integrator has an *initial condition* (IC) input. This is a value/voltage t
 
 ## Integration Speed
 
-Unlike the other **“Anna”** modules, the integrators have a kind of *speed* associated with them—the speed of integration. The value of the input resistors contribute to determine the speed of integration as does the size of the capacitor in the op-amp feedback circuits.
+Unlike the other **“Anna”** modules, the integrators have a kind of *speed* associated with them—the speed of integration. The value of the input resistors and the size of the capacitor in the op-amp feedback circuits contribute to determine the speed of integration.
 
 It was found that some simulations, like *Lunar Lander* for example, preferred a slower integration time—to allow the player to react to their descending spacecraft. Other simulations, such as a mass on a spring, felt more realistic with a faster integrator.
 
