@@ -22,7 +22,7 @@ Unlike the other **“Anna”** modules, the integrators have a kind of *speed* 
 
 It was found that some simulations, like *Lunar Lander* for example, preferred a slower integration time—to allow the player to react to their descending spacecraft. Other simulations, such as a mass on a spring, felt more realistic with a faster integrator.
 
-To address either scenario, the **INT** module has a separate switch for each integrator that allows for toggling in or out of the op-amp feedback an additional capacitor. With just the one capacitor switched in, an integrator will run faster for simulations like the *spring and mass*. Switching in a second capacitor slows the integration down by roughly an order of magnitude—making a game like *Lunar Lander* playable.
+To address either scenario, the **INT** module has a separate switch for each integrator that allows for toggling in or out of the op-amp feedback an additional capacitor. With just the one capacitor in the feedback path, an integrator will run faster for simulations like the *spring and mass*. Switching in a second capacitor in parallel slows the integration down by roughly an order of magnitude—making a game like *Lunar Lander* playable.
 
 ## Summing Junctions
 
