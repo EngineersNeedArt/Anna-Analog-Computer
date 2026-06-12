@@ -52,9 +52,9 @@ The **ADD** module has a pair of addition operators. (Or *summers*? I don't know
 
 #### Overload 
 
-Analog computers programs have to be careful to avoid a condition referred to as **overloading**. The addition operation makes a good case for the problem. Given the voltage limitation of ***Anna*** (1V, *machine -1* or **-UNIT** in ***Anna** parlance to 4V, *machine +1* or **+UNIT**) what do we expect if we try to add 4V and 4V (or "max plus max" if you will)? To get technical, the underlying op-amps that comprise the analog circuitry cannot exceed their own power rails—which we have mentioned are **5V USB** and **GND**.
+Analog computers programs have to be careful to avoid a condition referred to as **overloading**. The addition operation makes a good case for the problem. Given the voltage limitation of ***Anna*** (1V to 4V, i.e. *machine -1* to *machine +1*) what do we expect if we try to add 4V and 4V (*machine +1* plus *machine +1*)? To dive into the technical, the underlying op-amps that comprise the analog circuitry physically cannot exceed their own power rails—which we have mentioned are **5V USB** and **GND**. So a sum of 8V is already out of the question.
 
-Instead, this condition is flagged as an error, called **overload**. The "programmer" must re-evaluate the program they have patched together—re-implement it to avoid overload. This might involve artificially scaling down part of an equation and then later "de-scaling" to counter.
+Instead, this condition is considered an error, called **overload**. The "programmer" must re-evaluate the program they have patched together—re-implement it to avoid overload. This might involve artificially scaling down part of an equation and then later "de-scaling" to counter.
 
 There is no on-board overload warning on the **ADD** module. Wiring the ouput of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads (**MAIN** detects over/undervolts at all its inputs).
 
