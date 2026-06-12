@@ -10,7 +10,7 @@ The **INT** module consists of a pair of integrators. One of the integrators has
 
 It will probably come as no surprise that the **INT** module also expects a *machine zero* reference as input. Like the **ADD** module, *machine zero* (ZERO) is used as a *virtual ground* on the non-inverting input of the op-amps.
 
-Like the **ADD** module, this is why the output of the integrator is inverted. Since inout values/voltages are connected to the inverting input, they have an inverse effect on the output of the integrator. A positive value (voltage above 2.5V) will in fact cause the integrator output to decrease while a negative value (a voltage below 2.5V) causes the integrator output to become more positive.
+Like the **ADD** module, this is why the output of the integrator is inverted. Since input values/voltages are connected to the inverting input, they have an inverse effect on the output of the integrator. A positive value (voltage above 2.5V) will in fact cause the integrator output to decrease while a negative value (a voltage below 2.5V) causes the integrator output to become more positive.
 
 ## Reset
 
