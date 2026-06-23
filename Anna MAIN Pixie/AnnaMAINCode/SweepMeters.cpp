@@ -22,7 +22,7 @@
 
 #define SWEEPMETER_LABEL_Y  106
 
-#define SWEEPMETER_ALPHA     0.10f
+#define SWEEPMETER_ALPHA     0.50f
 
 
 TFT_eSprite *sweepMeterSprite = nullptr;

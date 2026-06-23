@@ -129,7 +129,7 @@ float computeMachineFromRaw (float raw) {
 // Clear Output of Serial Monitor (Arduino IDE) before calling.
 // When data is finished being sent, copy text from Serial Monitor and paste into plaintext 
 // document (.ppm extension).
-// Using magick (command-line tool): convert in_screenshot.ppm out_screenshot.png
+// Using magick (command-line tool): magick in_screenshot.ppm out_screenshot.png
 
 void debug_dumpScreenAsPPM (TFT_eSprite &spr, int w, int h) {
     Serial.printf ("P3\n%d %d\n255\n", w, h);
