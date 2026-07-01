@@ -38,3 +38,20 @@ You should note that an identical circuit to the one just described exists below
 
 ### Switching
 
+Following the schematic, the pulse-width modulated (PWM) output from **U1B** goes to tha rather large rectangular circuit/chip. This integrated circuit is an analog switch, and **U1B** is connected to drive one of the internal switches (*S1*). This is the "A" switch in the IC and it controls whether **A0** or **A1** are selected for output **A**.
+
+Recall that if **X1** is *machine zero* we expect a 50% duty-cycle. This would mean that **A** would output **A0** half of the time and **A1** the other half of the time. And what then are **A0** and **A1**?
+
+**A1** is simple, it comes directly from **Y1**, our multiplier.
+
+**A0** is a little more complicated, it comes from an op-amp (*U2A*) acting as an inverting op-amp. In fact, **A0** is **Y1** inverted (the negative value). So if **Y1** is *+UNIT*, **U2A** will output *-UNIT*. Another example, if **Y1** is *machine zero*, the inverted value is also *machine zero*.
+
+What does this mean if we are switching between **Y1** and inverted **Y1**? Before we answer that question, lets look at the final stage of the circuit.
+
+### Filtering
+
+The final stage for our multiplier operator that began with is **X1** and **Y1** is the op-amp (*U1C*) that ouputs the product (**X1×1**). This final op-amp is configured as an active filter. It *smooths* the output of switch **A** to a voltage (value) that is the kind of average of the output.
+
+Back to our early example, if we are switching between **Y1** and **-Y1** (inverted **Y1**) and spending 50% of the time at each voltage, the *average* value will be *machine zero*. Does that make sense? If **Y1** is *+UNIT* then **-Y1** will be *-UNIT* and, when averaged, will give *machine zero*.
+
+In fact, this is what we expect mathematically: recall that 50% duty cycle was for an **X1** that was *machine zero*—and any number multiplied by zero if of course zero.
