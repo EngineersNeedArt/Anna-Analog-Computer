@@ -55,3 +55,9 @@ The final stage for our multiplier operator that began with is **X1** and **Y1**
 Back to our early example, if we are switching between **Y1** and **-Y1** (inverted **Y1**) and spending 50% of the time at each voltage, the *average* value will be *machine zero*. Does that make sense? If **Y1** is *+UNIT* then **-Y1** will be *-UNIT* and, when averaged, will give *machine zero*.
 
 In fact, this is what we expect mathematically: recall that 50% duty cycle was for an **X1** that was *machine zero*—and any number multiplied by zero if of course zero.
+
+So what happens when **X1** is greater than *machine zero*? We said above that the output of our comparator would be high more often than low in that case. This will correspond to **Y1** being switched in more often than the inverted **-Y1**. And this will *average* out to a value closer to **Y1**.
+
+In the extreme case, if **X1** is *+UNIT* (the largest value and treated as though it is numercially 1.0) then the output of the comparator should remain high and the switched output then simply **Y1**. Again, this is expected as 1.0 times any number is that number.
+
+I'll leave it as an exercise for you to understand the operation of the circuit when **X1** is *-UNIT* or when **Y1** is *machine zero*.
