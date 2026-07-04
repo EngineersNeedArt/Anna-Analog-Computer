@@ -2,6 +2,10 @@
 
 ***Anna*** is an ecosystem of analog computing modules. The modules (each about the size of a matchbook) make use of a hobbyist breadboard and USB power and combine to make something like an analog computer trainer.
 
+<p align="center">
+<img src="images/ANNA Parts.jpeg" width="600">
+</p>
+
 ### Breadboard
 
 An electronics breadboard is an integral part of ***Anna***. The breadboard allows ***Anna*** to be easily modular, expandable. It provides a power bus (the top two power rails of the breadboard) and it is acts as the “patch bay” that allows you to connect inputs and outputs between the various analog operators.
@@ -19,6 +23,11 @@ Needless to say, this makes the voltage window for representing values in ***Ann
 ## **The Modules**
 
 ### MAIN Module
+
+<p align="center">
+<img src="images/MAIN Photo.jpeg" width="600">
+</p>
+
 The **MAIN** module is required for any ***Anna*** configuration as it provides USB power to the top two rails of the breadboard. These USB power rails are what all other ***Anna*** modules depend upon to operate.
 - Provides USB power to the top two power rails on the breadboard—powering all other ***Anna*** modules.
 - Provides the reference voltages for **+UNIT**, **ZERO** and **-UNIT**. These are the operating voltages of the analog computer programs.
@@ -29,6 +38,10 @@ The **MAIN** module is required for any ***Anna*** configuration as it provides 
 More (esoteric) details are available in the **README** that with the **MAIN** subfolder in this repository.
 
 ### POTS Module
+
+<p align="center">
+<img src="images/POTS Photo.jpeg" width="400">
+</p>
 
 The **POTS** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
 
@@ -45,6 +58,10 @@ Like all of the modules (except for **MAIN**), **POTS** requires a **ZERO** volt
 All four pots buffer their output (using op-amps as voltage followers).
 
 ### ADD Module
+
+<p align="center">
+<img src="images/ADD Photo.jpeg" width="400">
+</p>
 
 The **ADD** module also requires **USB** power and also a **ZERO** reference voltage.
 
@@ -68,6 +85,10 @@ Any add operator with a single input will return that input value inverted as ou
 
 ### MULT Module
 
+<p align="center">
+<img src="images/MULT Photo.jpeg" width="400">
+</p>
+
 The **MULT** module has a pair of multipliers. It performs multiplication using a PWM circuit (described in more detail in the **MULT** ReadMe.md). It requires **USB** power and a **ZERO** reference voltage.
 
 The multiplier and multiplicand are assumed to be within *machine range* and are treated as values between 1.0 and -1.0. As such, the product will also always be within *machine range* (between 1.0 and -1.0). Consequently, the operator should not overload. (If the product ever overloads it is from an input that was already overloaded.)
@@ -75,6 +96,10 @@ The multiplier and multiplicand are assumed to be within *machine range* and are
 A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.) After calibrating a **MULT** module, I measured it with 49 sample voltages (combinations of 7 voltages for **X** and 7 for **Y**) and measured the product. Plotting the results vs. the expected result I submitted the data to an LLM and was told the overall accuracy to be about 2.3% RMS full scale (I am lazy beyond some threshold). In general, expect some error from the **MULT** module.
 
 ### INT Module
+
+<p align="center">
+<img src="images/INT Photo.jpeg" width="400">
+</p>
 
 The **INT** module may be the most important one. I have read that integration was in fact the reason for early analog computing at all.
 
