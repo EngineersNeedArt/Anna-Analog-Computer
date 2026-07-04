@@ -1,6 +1,6 @@
 # “Anna” Analog Computer
 
-***Anna*** is an ecosystem of analog computing modules. The modules (each about the size of a matchbook) make use of a hobbyist breadboard and USB power and combine to make something like an analog computer trainer.
+***Anna*** is an ecosystem of analog computing modules. The modules (each about the size of a matchbook) make use of a hobbyist breadboard and USB power that combine to make something like an analog computer trainer.
 
 <p align="center">
 <img src="images/ANNA Parts.jpeg" width="600">
