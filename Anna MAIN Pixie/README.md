@@ -98,7 +98,7 @@ The other five op-amps are used to buffer the five source-voltage inputs to **MA
 
 ### ADC
 
-Just above the op-amps are a pair of ADC chips (analog-to-digital). Each chip has four channels for a total of eight inputs. Three of these are dedicated to converting the machine values/voltages (1.0V, 2.5V and 4.0V) to digital form. The other five are, unsurprisingly, used to convert the source-voltage inputs to digital form.
+Just above the op-amps are a pair of ADC chips (analog-to-digital). Each chip has four channels for a total of eight inputs. Three of these are dedicated to converting the machine values/voltages (1.0V, 2.5V and 4.0V) to digital form. The other five are, unsurprisingly, used to convert the source-voltage inputs (**SRC1** through **SRC5**) to digital form.
 
 The ESP32 reads the 8 digital values over I2C.
 
