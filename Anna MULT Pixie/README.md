@@ -24,11 +24,11 @@ Top-most in the schematic (above) is a circuit that outputs a triangle wave. It 
 
 Two trim pots are incorporated in order to adjust the triangle wave such that it peaks at 4.0V (*+UNIT*) and at it's lowest, base voltage, it is at 1.0V (*-UNIT).
 
-The purpose of the triangle wave (that oscillates at a freuqncy of about 4 kHz, FWIW) will be clear below.
+The purpose of the triangle wave (that oscillates at a frequency of about 4 kHz, FWIW) will be clear below.
 
 ### Comparators
 
-Just below the triangle wave circuit (see schematic above again) is one of the multiplicand inputs labeled **X1**. It is connected to the non-inverting input of an op-amp (*U1B*). The inverting input of that op-amp if the triangle wave we described. With op-amp configured as a comparator, the output is going to be high when the non-inverting input is a greater voltage than the inverting input. For our purposes, it means that the op-amp output is high when the multipilcand (*X1*) is greater than the value of the triangle wave.
+Just below the triangle wave circuit (see schematic above again) is one of the multiplicand inputs labeled **X1**. It is connected to the non-inverting input of an op-amp (*U1B*). The inverting input of that op-amp if the triangle wave we described. With op-amp configured as a comparator, the output is going to be high when the non-inverting input is a greater voltage than the inverting input. For our purposes, it means that the op-amp output is high when the multiplicand (*X1*) is greater than the value of the triangle wave.
 
 Let's stop and think about what that means. If **X1** is *machine zero* (recall, 2.5V) and the triangle wave is ramping up and down symmetrically between 1.0V (*-UNIT*) and 4.0V (*+UNIT*), then it should be the case that the output from the comparator is split 50/50 between being high and being low.
 
@@ -38,7 +38,7 @@ You should note that an identical circuit to the one just described exists below
 
 ### Switching
 
-Following the schematic, the pulse-width modulated (PWM) output from **U1B** goes to tha rather large rectangular circuit/chip. This integrated circuit is an analog switch, and **U1B** is connected to drive one of the internal switches (*S1*). This is the "A" switch in the IC and it controls whether **A0** or **A1** are selected for output **A**.
+Following the schematic, the pulse-width modulated (PWM) output from **U1B** goes to the rather large rectangular circuit/chip. This integrated circuit is an analog switch, and **U1B** is connected to drive one of the internal switches (*S1*). This is the "A" switch in the IC and it controls whether **A0** or **A1** are selected for output **A**.
 
 Recall that if **X1** is *machine zero* we expect a 50% duty-cycle. This would mean that **A** would output **A0** half of the time and **A1** the other half of the time. And what then are **A0** and **A1**?
 
@@ -46,11 +46,11 @@ Recall that if **X1** is *machine zero* we expect a 50% duty-cycle. This would m
 
 **A0** is a little more complicated, it comes from an op-amp (*U2A*) acting as an inverting op-amp. In fact, **A0** is **Y1** inverted (the negative value). So if **Y1** is *+UNIT*, **U2A** will output *-UNIT*. Another example, if **Y1** is *machine zero*, the inverted value is also *machine zero*.
 
-What does this mean if we are switching between **Y1** and inverted **Y1**? Before we answer that question, lets look at the final stage of the circuit.
+What does this mean if we are switching between **Y1** and inverted **Y1**? Before we answer that question, let's look at the final stage of the circuit.
 
 ### Filtering
 
-The final stage for our multiplier operator that began with is **X1** and **Y1** is the op-amp (*U1C*) that ouputs the product (**X1×1**). This final op-amp is configured as an active filter. It *smooths* the output of switch **A** to a voltage (value) that is the kind of average of the output.
+The final stage for our multiplier operator that began with is **X1** and **Y1** is the op-amp (*U1C*) that outputs the product (**X1×1**). This final op-amp is configured as an active filter. It *smooths* the output of switch **A** to a voltage (value) that is the kind of average of the output.
 
 Back to our early example, if we are switching between **Y1** and **-Y1** (inverted **Y1**) and spending 50% of the time at each voltage, the *average* value will be *machine zero*. Does that make sense? If **Y1** is *+UNIT* then **-Y1** will be *-UNIT* and, when averaged, will give *machine zero*.
 
@@ -58,6 +58,18 @@ In fact, this is what we expect mathematically: recall that 50% duty cycle was f
 
 So what happens when **X1** is greater than *machine zero*? We said above that the output of our comparator would be high more often than low in that case. This will correspond to **Y1** being switched in more often than the inverted **-Y1**. And this will *average* out to a value closer to **Y1**.
 
-In the extreme case, if **X1** is *+UNIT* (the largest value and treated as though it is numercially 1.0) then the output of the comparator should remain high and the switched output then simply **Y1**. Again, this is expected as 1.0 times any number is that number.
+In the extreme case, if **X1** is *+UNIT* (the largest value and treated as though it is numerically 1.0) then the output of the comparator should remain high and the switched output then simply **Y1**. Again, this is expected as 1.0 times any number is that number.
 
 I'll leave it as an exercise for you to understand the operation of the circuit when **X1** is *-UNIT* or when **Y1** is *machine zero*.
+
+## TODO
+
+• An inverted output would be nice: **-X × Y**. This would require additional op-amps.
+
+• There is a cap that is a touch too close to the edge of the PCB.
+
+• Silkscreen show **X × Y** instead of **XY**. (Perhaps **X ⋅ Y**)
+
+• Larger butterfly art.
+
+• Possibly replace trim pots with specific resistor values found to be correct.
