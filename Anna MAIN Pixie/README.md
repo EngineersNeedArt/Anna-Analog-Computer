@@ -14,7 +14,7 @@ The bottom-right button, the one closest to the user, Iʼll call the *mode butto
 <img src="images/Anna (MAIN, Vertical Meters).png" alt="Vertical Meters screenshot" width="240">
 </div>
 
-The default metering mode consists of five moveable, vertical meters and a fixed red index line. They are labeled 1 though 5 and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
+The default metering mode consists of five moveable, vertical meters and a fixed red index line. They are labeled 1 through 5 and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
 
 ### Sweep Meters
 
@@ -22,7 +22,7 @@ The default metering mode consists of five moveable, vertical meters and a fixed
 <img src="images/Anna (MAIN, Sweep Meters).png" alt="Sweep Meters screenshot" width="240">
 </div>
 
-Looking like traditional analog panel meters, the magic of digital emulation means that 5 needles can share the same meter. They are labeled 1 though 5, color coded, and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
+Looking like traditional analog panel meters, the magic of digital emulation means that 5 needles can share the same meter. They are labeled 1 through 5, color coded, and correspond to the inputs on **MAIN**, **SRC1** through **SRC5**. The *options button* allows you to toggle the number of inputs displayed from the 5 down to just 1. Overload is represented by the labels flashing.
 
 ***(NOTE: in the screenshot only 3 inputs are enabled.)***
 
@@ -64,7 +64,7 @@ Lunar Lander is another special metering mode that is a game. It expects a gravi
 
 The above connections presume that the user has wired up the lunar lander program on the analog computer—supplied the above voltages as described.
 
-Starting the game is done by simply resetting the integrators that dictate velocity (reset to **ZERO**), altitude (reset to **+UNIT**) and, if the fuel level integrator is wired up, resetting the fuel level to **+UNIT**. Doing so put the spacecraft at the top fo the display, with no vertical velocity, and optionally with a full tank of fuel.
+Starting the game is done by simply resetting the integrators that dictate velocity (reset to **ZERO**), altitude (reset to **+UNIT**) and, if the fuel level integrator is wired up, resetting the fuel level to **+UNIT**. Doing so put the spacecraft at the top of the display, with no vertical velocity, and optionally with a full tank of fuel.
 
 As the spacecraft descends, the software monitors the spacecraft altitude (**SRC4**) to determine touch-down. When the spacecraft altitude passes the touch-down threshold, velocity (**SRC3**) is evaluated by the software to determine if the landing was safe. The **MAIN** display will indicate a safe landing or a crash.
 
@@ -111,3 +111,9 @@ Further, if any digital source-voltage input exceeds the digital positive machin
 ### Voltage Sources
 
 A last point to call out is the small component on the far-left (U5). It takes the voltage from USB and provides the stable 4.0V that **“Anna”** uses for positive machine value. The other machine values (zero and negative unit), are pared from the 4.0V using carefully selected resistor values arranged as voltage dividers.
+
+## TODO
+
+• The holes that receive the ESP32 Dev Board on the PCB are still a little tight. Open them up to the next drill size.
+
+• I'm not a fan of the super-tiny SMD resistors. Perhaps move up to the next SMD resistor size.
