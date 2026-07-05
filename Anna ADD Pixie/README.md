@@ -27,3 +27,9 @@ From an LLM (since this is where it gets fuzzy for me), “The summing junction 
 ## Inverters
 
 When analog computing, it turns out that inverting a value is common enough that the **ADD** module dedicates two op-amps just to take an input and return the inverted output. While any **ADD** operator will do the same with a single input, the dedicated inverters save on “breadboard real-estate” (number of pins).
+
+## TODO
+
+• Claude suggested adding a "pull to ZERO" resistor on every input. (1MΩ to 10MΩ)
+
+• S.J. (summing junction) hole is the wrong size.
