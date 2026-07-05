@@ -31,3 +31,7 @@ Like the **ADD** module, the **INT** module also makes accessible the “summing
 If a user wishes for an additional input, a 1 MΩ input resistor can be connected in series with the input and one of the summing junctions on the **INT** module.
 
 Alternatively, if a smaller resistor value is used as an input resistor, such as a 100 kΩ resistor, that input will move the integrator 10x (ten times) as fast. It is possible then to have a much quicker integrator (or much slower) by using input resistors other than 1 MΩ.
+
+## TODO
+
+• Claude suggested adding a "pull to ZERO" resistor on every input. (Perhaps using 10MΩ resistors.)
