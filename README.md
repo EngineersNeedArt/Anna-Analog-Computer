@@ -139,4 +139,4 @@ Some simulations might benefit by having an input that sweeps a range of values.
 
 ### Trigonometry Module
 
-Sine and cosine are uiseful operations to include. There are no simple electrical circuits that naturally give rise to these trigonometric functions. There is a method using diodes and resistors to *shape* a function from a given input. Enough diode stages in a kind of ladder configuration with precise resistor values can output a voltage that approximate, for example, the sine of the input voltage.
+Sine and cosine are useful operations to include. There are no simple electrical circuits that naturally give rise to these trigonometric functions. There is a method using diodes and resistors to *shape* a function from a given input. Enough diode stages in a kind of ladder configuration with precise resistor values can output a voltage that approximate, for example, the sine of the input voltage.
