@@ -45,9 +45,9 @@ More (esoteric) details are available in the **README** that with the **MAIN** s
 
 The **POTS** module, as with the remaining modules described, is to be inserted into a breadboard such that its power pins engage in the top two power rails (top-most row: **USB 5V**, the row just below: **GND**). As described above, the **USB** power is provided by the **MAIN** board.
 
-The **POTS** has four potentiometers—three of those are wired internally to behave as “coefficient multipliers” (in analog computer parlance). What this means, electrically, is that the low-side of the potentiometer is tied to a *machine zero* reference supplies by **MAIN**, while the user is expected to connect their input signal to the pin tied to the potʼs high-side. With the potʼs wiper conencted to the output pin, the pot acts as a voltage divider—effectivly attenuating the incoming voltage.
+The **POTS** has four potentiometers—three of those are wired internally to behave as “coefficient multipliers” (in analog computer parlance). What this means, electrically, is that the low-side of the potentiometer is tied to a *machine zero* reference supplies by **MAIN**, while the user is expected to connect their input signal to the pin tied to the potʼs high-side. With the potʼs wiper connected to the output pin, the pot acts as a voltage divider—effectively attenuating the incoming voltage.
 
-A practical use case for a coefficent multiplier is to attenuate a signal that is being used as feedback.
+A practical use case for a coefficient multiplier is to attenuate a signal that is being used as feedback.
 
 The 4th potentiometer on the **POTS** module is not tied to a zero-reference—the high-side of the pot is another input pin. The input pins are labeled **CCW** and **CW** referring to the rotation of the pot they correspond to. Connecting **CCW** to a **ZERO** reference makes this 4th pot behave like the other three—like a coefficient multiplier.
 
@@ -73,13 +73,13 @@ Analog computers programs have to be careful to avoid a condition referred to as
 
 Instead, this condition is considered an error, called **overload**. The "programmer" must re-evaluate the program they have patched together—re-implement it to avoid overload. This might involve artificially scaling down part of an equation and then later "de-scaling" to counter.
 
-There is no on-board overload warning on the **ADD** module. Wiring the ouput of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads (**MAIN** detects over/undervolts at all its inputs).
+There is no on-board overload warning on the **ADD** module. Wiring the output of any add operator to one of the voltage source inputs of **MAIN** though will catch any overloads (**MAIN** detects over/undervolts at all its inputs).
 
 Also, going too negative (below 1V in the case of ***Anna***) is oddly also called an *overload*.
 
 #### Inversion
 
-You may notice that the add operators return the *inverted* sum of the inputs. That is, if you input the values for 0.2 and 0.4, the sum operator will return not 0.6 but -0.6. There is an underlying (op-amp related) reason for this. When the result of adding is needed to act as negative feedback in an equation you are modelling, this inversion is a happy accident. At times though when you need the non-inverted sum, you will have to wire the output of a summer to an inverter operator.
+You may notice that the add operators return the *inverted* sum of the inputs. That is, if you input the values for 0.2 and 0.4, the sum operator will return not 0.6 but -0.6. There is an underlying (op-amp related) reason for this. When the result of adding is needed to act as negative feedback in an equation you are modeling, this inversion is a happy accident. At times though when you need the non-inverted sum, you will have to wire the output of a summer to an inverter operator.
 
 Any add operator with a single input will return that input value inverted as output. But since inverting is a common operation, the **ADD** module contains a pair of dedicated inverter operators. (A dedicated inverter of course needs less pins and so conserves breadboard real-estate).
 
@@ -93,7 +93,7 @@ The **MULT** module has a pair of multipliers. It performs multiplication using 
 
 The multiplier and multiplicand are assumed to be within *machine range* and are treated as values between 1.0 and -1.0. As such, the product will also always be within *machine range* (between 1.0 and -1.0). Consequently, the operator should not overload. (If the product ever overloads it is from an input that was already overloaded.)
 
-A test point and two trim pots are there to allow the mutliplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.) After calibrating a **MULT** module, I measured it with 49 sample voltages (combinations of 7 voltages for **X** and 7 for **Y**) and measured the product. Plotting the results vs. the expected result I submitted the data to an LLM and was told the overall accuracy to be about 2.3% RMS full scale (I am lazy beyond some threshold). In general, expect some error from the **MULT** module.
+A test point and two trim pots are there to allow the multiplier to be calibrated. (This requires an oscilloscope in order to adjust a triangle wave to run between 1.00 and 4.00 Volts.) After calibrating a **MULT** module, I measured it with 49 sample voltages (combinations of 7 voltages for **X** and 7 for **Y**) and measured the product. Plotting the results vs. the expected result I submitted the data to an LLM and was told the overall accuracy to be about 2.3% RMS full scale (I am lazy beyond some threshold). In general, expect some error from the **MULT** module.
 
 ### INT Module
 
@@ -105,9 +105,9 @@ The **INT** module may be the most important one. I have read that integration w
 
 **INT** combines a pair of integrators in a single module. A single **Reset** button, when held for a short period, sets both integrators to their initial conditions (initial voltages). The “IC” of each integrator is established from the user having connected a voltage to its **IC** pin.
 
-Integrators output a voltage—initially they are expected to be Reset and so ouput their IC voltage. Inputs to each integrator though can cause the output voltage of the integrator to rise or fall—the applied voltage or value is being integrated with respect to time.
+Integrators output a voltage—initially they are expected to be Reset and so output their IC voltage. Inputs to each integrator though can cause the output voltage of the integrator to rise or fall—the applied voltage or value is being integrated with respect to time.
 
-Like the **ADD** module, the integrators on the **INT** module are also inverting. In practice this means that if you supply a **positive** *machine value* to an integrator, the value it ouyputs will get **smaller**, not larger. The reverse is the case when a **negative** machine value is applied.
+Like the **ADD** module, the integrators on the **INT** module are also inverting. In practice this means that if you supply a **positive** *machine value* to an integrator, the value it outputs will get **smaller**, not larger. The reverse is the case when a **negative** machine value is applied.
 
 If *machine zero* (**ZERO**) is applied as in input, the output of an integrator does not change.
 
@@ -131,11 +131,11 @@ Or, the **log** of two values can be added with an **adder** and the **anti-log*
 
 ### Comparator Module
 
-For some simulations a kind of *binary switch* might be desirable. For example, a bouncing ball simulation needs to know when the ball has fallen to some position where it has encountered the floor and should reverse its velocity (it should bounce). A **comparator** module would make use of an op-amp to detect when the input has crossed some threshhold and then switch its output.
+For some simulations a kind of *binary switch* might be desirable. For example, a bouncing ball simulation needs to know when the ball has fallen to some position where it has encountered the floor and should reverse its velocity (it should bounce). A **comparator** module would make use of an op-amp to detect when the input has crossed some threshold and then switch its output.
 
 ### Sweep Module
 
-Some simulations might benefit by having an input that sweeps a range of values. A circuit that outputs a triangle wave would achive this. Having a means to change the speed (period) of the sweep would be important.
+Some simulations might benefit by having an input that sweeps a range of values. A circuit that outputs a triangle wave would achieve this. Having a means to change the speed (period) of the sweep would be important.
 
 ### Trigonometry Module
 
