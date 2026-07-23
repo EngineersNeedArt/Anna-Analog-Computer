@@ -22,7 +22,7 @@ As stated, multiplication is done in a way very different from the op-amp based 
 
 Top-most in the schematic (above) is a circuit that outputs a triangle wave. It consists of a pair of op-amps: the first one acting as an oscillator to create an intermediary square wave, the second op-amp is wired as an integrator such that the incoming square wave causes the final triangular output.
 
-Two trim pots are incorporated in order to adjust the triangle wave such that it peaks at 4.0V (*+UNIT*) and at it's lowest, base voltage, it is at 1.0V (*-UNIT).
+Two trim pots are incorporated in order to adjust the triangle wave such that it peaks at 4.0V (*+UNIT*) and at it's lowest, base voltage, it is at 1.0V (-UNIT).
 
 The purpose of the triangle wave (that oscillates at a frequency of about 4 kHz, FWIW) will be clear below.
 
